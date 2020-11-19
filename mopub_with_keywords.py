@@ -50,16 +50,16 @@ def create_line_item_with_keywords(postDataJson, line_item_prefix, price, keywor
     newCurlCall = re.sub(r'--data-binary \'.*?\'', '--data-binary \'%s\'' % (json.dumps(postDataJson)), curlCall)
     print(newCurlCall)
 
-# #     # execute curl call
-#     output = subprocess.Popen(newCurlCall, shell=True, stdout=subprocess.PIPE).stdout.read()
-#     print(output)
-#     outputJson = json.loads(output)
-#
-#     # check response; if not successful, inform
-#     if outputJson['status'] == "error":
-#         print("Something went wrong, stopping the line item creation process. You may need to copy a new CSRF token from the browser and restart the process with firstLineItemBidRate set to %.2f ." % (price))
-#     else:
-#         print("Line item created successfuly.")
+#     # execute curl call
+    output = subprocess.Popen(newCurlCall, shell=True, stdout=subprocess.PIPE).stdout.read()
+    print(output)
+    outputJson = json.loads(output)
+
+    # check response; if not successful, inform
+    if outputJson['status'] == "error":
+        print("Something went wrong, stopping the line item creation process. You may need to copy a new CSRF token from the browser and restart the process with firstLineItemBidRate set to %.2f ." % (price))
+    else:
+        print("Line item created successfuly.")
 
 
 
